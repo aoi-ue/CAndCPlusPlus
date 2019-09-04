@@ -10,7 +10,7 @@ This repo contains practice, assignment and projects.
 ### Resources to research work 🤔
 
 - [ ] Write example code on Data type and modifier [int short char float double + unsigned(+-)/long(extension)] within x32/64 bytes 
-- [ ] Write rule book for Bitwise and its application
+- [ ] Write rule book for Bitwise and its working application
 - [ ] Build a virtual memory to count and manage binary value from byte/bits, considering arithemtic/bitwise operation to improve the effiency 
 
 - [ ] Write up compilation process in C/C++ from Binary, Assembly and High Level 
