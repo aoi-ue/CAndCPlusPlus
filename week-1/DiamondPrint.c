@@ -2,10 +2,11 @@
 #include <stdlib.h> 
 
 int main(int argc, char *argv[]) {
-    int i,j;  
     // input goes here
     int input = atoi(argv[1]);
-    // printf("types: %d\n", argc); 
+    if (argc == 2) {
+        printf("types: %d\n", argc);         
+    }
     printf("number input: %d\n", input); 
     int space = input ; 
     
