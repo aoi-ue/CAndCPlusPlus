@@ -15,7 +15,7 @@ int main(void)
   printf("// Section A -------------------------------------\n");
   printf("Given numbers A = %d, B = %d, C = %d\n", A, B, C);
   printf("Add A and B : %d\n", A + B); 
-  printf("Subtract B from C : %d\n", B - C);
+  printf("Subtract B from C : %d\n", C - B);
   printf("Multiply A with C : %d\n", A * C);
   printf("Find the whole number of C divide by A : %d\n", C / A);
   printf("Find the remainder of C divide by A : %d\n", C % A);
