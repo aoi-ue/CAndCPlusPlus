@@ -1,5 +1,4 @@
 /*---------------------------------------------------------------
-
 Student: Lian Yuhan
 Filename: Calculator.c
 Email: daniel.l@digipen.edu

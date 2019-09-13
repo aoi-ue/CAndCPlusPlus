@@ -6,7 +6,8 @@ This repo contains practice, assignment and projects.
 
 #### 09-Sep - 13 Sep 
 
-- [x] Build a Simple Calculator
+- [x] ~~Build a Converter~~ 
+- [x] ~~Build a Simple Calculator~~
 
 #### 02-Sep - 06 Sep 
 
@@ -17,17 +18,22 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
-- [ ] Experiement Unsigned Int and Boolean   
+- [ ] Write an example of floating point 
 
-- [ ] Experiment Array and Strings Gotchas, with memory allocation in cpu [with users accessing to memory]
+- [ ] Write a case example of scoping: global variable using static 
+- [ ] Write a code example to do Pointer holds an address for a memory 
+
+- [ ] Experiement: Unsigned Int and Boolean   
+
+- [ ] Experiment: Array and Strings Gotchas, with memory allocation in cpu [with users accessing to memory]
 
 - [ ] Write a simple array in data structure 
 - [x] Write Recursive code 
 - [ ] Write a code example in C code to calculate Big O
  
-- [x] Understand the following: Decimal to Binary to Hexidecimal to Base64, and arithmetic 
+- [ ] Refactor convertor for Decimal to Binary to Hexidecimal, with arithmetic operation 
 
-- [ ] Refactor Diamond C katas 
+- [ ] Refactor Diamond  
 - [ ] Write a nested loop for brute force 
 - [x] Experiment with conditional statement quirks with pre and post increment with Precedence & Associativity  
 
