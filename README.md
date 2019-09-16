@@ -4,12 +4,15 @@ This repo contains practice, assignment and projects.
 
 ### Assignments 📝
 
-#### 09-Sep - 13 Sep 
+#### 16 Sep - 20 Sep 
+
+
+#### 09 Sep - 13 Sep 
 
 - [x] ~~Build a Converter~~ 
 - [x] ~~Build a Simple Calculator~~
 
-#### 02-Sep - 06 Sep 
+#### 02 Sep - 06 Sep 
 
 - [x] ~~Build a Diamond Formation~~ 
 - [x] ~~Build Operator/Arthemetic~~
@@ -17,6 +20,10 @@ This repo contains practice, assignment and projects.
 
 
 ### Resources to research work 🤔
+
+- [ ] Build Bubble, Selection, Insertion and Merge sort 
+
+- [ ] Refactor nested for loops to recursive and while loop 
 
 - [ ] Write an example of floating point 
 
@@ -33,7 +40,7 @@ This repo contains practice, assignment and projects.
  
 - [ ] Refactor convertor for Decimal to Binary to Hexidecimal, with arithmetic operation 
 
-- [ ] Refactor Diamond  
+- [ ] Refactor Print a Diamond  
 - [ ] Write a nested loop for brute force 
 - [x] Experiment with conditional statement quirks with pre and post increment with Precedence & Associativity  
 
