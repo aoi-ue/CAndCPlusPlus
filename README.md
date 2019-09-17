@@ -9,11 +9,12 @@ This repo contains practice, assignment and projects.
 
 #### 09 Sep - 13 Sep 
 
-- [x] ~~Build a Converter~~ 
-- [x] ~~Build a Simple Calculator~~
+- [ ] reBuild a Converter 
+- [ ] reBuild a Simple Calculator
 
 #### 02 Sep - 06 Sep 
 
+- [ ] Refactor Diamond to function 
 - [x] ~~Build a Diamond Formation~~ 
 - [x] ~~Build Operator/Arthemetic~~
 - [x] ~~initialize C and basic set up~~
@@ -21,31 +22,34 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
+- [ ] Write a code example in Static Cast, using Malloc()  
+- [ ] Write an code example to prove Pass By Value 
+- [ ] Experiment: Dynamic Memory Allocation
+- [ ] Write an code example to handle (Memory) Address - De-referencing
+- [ ] Write an example to Why When How to use a Pointer
+
 - [ ] Refactor to Recursive and While loop
 - [ ] Build Bubble, Selection, Insertion and Merge sort using nested For loops
 
-- [ ] Write an example case of a floating point 
+- [ ] Write an example case of a Floating Point 
 
-- [ ] Write a case example of scoping: global variable using static 
-- [ ] Write a code example to do Pointer holds an address for a memory 
+- [ ] Write a case example of Scoping: global variable using static 
+- [ ] Write a code example to do Pointers to hold an address for a memory 
 
-- [ ] Experiement: Unsigned Int and Boolean   
+- [ ] Experiment: Unsigned Int and Boolean   
 
-- [ ] Experiment: Array and Strings Gotchas, with memory allocation to CPU
+- [ ] Experiment: Array and Strings with Memory Allocation to CPU
 
-- [ ] Write a simple array and linked list in data structure 
+- [ ] Write a Simple Array and Linked List in data structure 
 - [x] Write Recursive code 
 - [ ] Write a code example in C code to calculate Big O
  
-- [ ] Refactor convertor for Decimal to Binary to Hexidecimal, with arithmetic operation 
-
-- [ ] Refactor Print a Diamond 
 - [x] Experiment: Conditional statement with pre and post increment, taking Precedence & Associativity in consideration 
 
-- [ ] Write code to compare Data type and modifier [int short char float double + unsigned(+-)/long(extension)] within x32/64 bytes
+- [ ] Write a code example to compare Data type and modifier [int short char float double + unsigned(+-)/long(extension)] within x32/64 bytes
 - [x] Write a code example for Bitwise and its application 
-- [ ] Build a virtual memory to allocate binary value with byte/bits, considering arithemtic/bitwise precedence and ways to improve performance
+- [ ] Build a virtual memory to allocate binary value with bits/byte, considering arithemtic/bitwise precedence and performance
 
-- [ ] Write up compilation process in C/C++ from Binary, Assembly and High Level 
+- [ ] Write up compilation process in C/C++ from High Level to Assembly to Binary
 - [ ] Write a code example to comparing processor performance between Compiled and Interpreted 
-- [ ] Build a PC using Memory + CPU > CU + ACU + Registers within a Computer Architecture 
+- [ ] Build a PC using Memory + CPU > CU + ACU + Registers referencing to Computer Architecture 
