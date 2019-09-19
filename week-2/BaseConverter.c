@@ -13,7 +13,7 @@ Brief Description: Converts to data format as requested in C
 
 int main(int argc, char *argv[]) {
     char* selected; 
-    int input = atoi(argv[2]); 
+    int input = atoi(argv[2]);
 
     if (argc !=3) printf("Invalid usage: BaseConverter.exe <Mode:string> input <IntegerValue:int>\n");
 
@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
         }       
 
         else {
-            printf("please include correctly");
+            printf("Please select correct convertor function");
         }
     }    
     return 0; 
