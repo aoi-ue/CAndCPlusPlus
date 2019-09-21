@@ -4,8 +4,11 @@ This repo contains practice, assignment and projects.
 
 ### Assignments 📝
 
+#### 23 Sep - 27 Sep
+
 #### 16 Sep - 20 Sep
 
+- [x] Build an word encryption
 - [ ] Build a Linked List 
 
 #### 09 Sep - 13 Sep 
@@ -23,12 +26,17 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
+
+- [ ] Write a code example for function pointer 
+- [ ] Write a code example to compare const - char - array 
+- [ ] Write a code example for pointer in array with arithmetic 
+
 - [ ] Write a calculator for binary arithmetic
 - [ ] Write a convertor from Hexadecimal - floating point - decimal 
 
 - [ ] Write a code example to explain Stack & Heap 
 - [ ] Write a code example in Static Cast, using Malloc()  
-- [ ] Write an code example to prove Pass By Value 
+- [ ] Write an code example to prove Pass By Value, Pass Argument by Reference  
 - [ ] Experiment: Dynamic Memory Allocation with Malloc, Realloc, Calloc
 - [ ] Write an code example to handle (Memory) Address - De-referencing
 - [ ] Write an example to Why When How to use a Pointer
