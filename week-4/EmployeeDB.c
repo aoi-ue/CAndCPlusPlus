@@ -2,19 +2,44 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Student
+struct Employee
 {
     int ID; // autoincrement
     char *Name;
     int Salary;      //check for zero
     int phoneNumber; //optional
+    struct Employee* next; 
 };
 
-// add
+// create node 
+struct Employee* CreateNode(const char* value)
+{
+	struct Employee* newNode = NULL;
+	int stringLength = strlen(value); /* Get the length of our string */ 
+	char* newString = malloc(sizeof(char) * stringLength + 1);
+	if (newString == NULL)
+		return NULL; /* Failed to allocate our string, can't proceed */
+	
+	newNode = malloc(sizeof(struct Employee));
+	if (newNode == NULL)
+	{
+		free(newString); /* remember that we allocated but now can't use */
+		return NULL; /* This case means cannot allocate */
+	}
+	strcpy(newString, value); /* Copy the string value over */
+	
+	newNode->next = NULL; /* Ensure next is NULL */	
+	/* Time to copy our value to our node */
+	newNode->ID = newString;
+	
+	return newNode;
+}
 
-// remove
+// add node 
 
-// printall
+// remove node by ID
+
+// printall 
 
 // search
 
@@ -22,47 +47,47 @@ struct Student
 
 // Create a menu page and Emun for switch cases
 int main()
-{   
+{
+    printf("Welcome to our Employee Database!\n");
     char input[100];
 
-    do {
-        fgets(input, 100, stdin); 
-        strtok(input, "\n"); 
+    do
+    {
+        fgets(input, 100, stdin);
+        strtok(input, "\n");
         strtok(input, " ");
-        if (strcmp(input, "add") == 0) {
-            struct Student student1 = {
-                10, "Yuhan", 1000, 1000  
-            }; 
+        if (strcmp(input, "add") == 0)
+        {
+            struct Employee employee1;
 
-            char *ID = strtok(NULL, " "); 
-            printf("ID%s\n:",ID); 
+            // call createNode
+            char *Name = strtok(NULL, " ");
+            char *Salary = strtok(NULL, " ");
+            char *phoneNumber = strtok(NULL, " ");
 
-            char *Name = strtok(NULL, " "); 
-            printf("Name%s\n:",Name); 
+            employee1.Name = Name;
+            employee1.Salary = atoi(Salary);
+            if (phoneNumber != NULL) {
+                employee1.phoneNumber = atoi(phoneNumber);
+            } else {
+                employee1.phoneNumber = 0; 
+            }
 
-            char *Salary = strtok(NULL, " ");      
-            printf("Salary%s\n:",Salary); 
-
-            char *phoneNumber = strtok(NULL, " "); 
-            printf("phone%s\n: ",phoneNumber); 
-
-            student1.ID = atoi(ID); 
-            student1.Name = Name; 
-            student1.Salary = atoi(Salary); 
-            student1.phoneNumber = atoi(phoneNumber); 
-
-            printf("after in struct: \n");
-            printf("ID   : %d", student1.ID); 
+            printf("Name: %s\n", employee1.Name);
+            printf("Salary: %d\n", employee1.Salary);
+            printf("Phone Number: %d\n", employee1 .phoneNumber);
         }
 
+        if (strcmp(input, "remove") == 0)
+            printf("%s\n", input);
+        if (strcmp(input, "printall") == 0)
+            printf("%s\n", input);
+        if (strcmp(input, "search") == 0)
+            printf("%s\n", input);
+        if (strcmp(input, "quit") == 0)
+            printf("%s\n", input);
 
-        if (strcmp(input, "remove") == 0) printf("%s\n",input); 
-        if (strcmp(input, "printall") == 0) printf("%s\n",input); 
-        if (strcmp(input, "search") == 0) printf("%s\n",input); 
-        
-    }
-    while (strcmp(input,"quit") != 0); 
-
+    } while (strcmp(input, "quit") != 0);
 
     return 0;
 }
