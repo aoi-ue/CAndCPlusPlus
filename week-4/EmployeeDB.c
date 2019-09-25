@@ -12,25 +12,29 @@ struct Employee
 };
 
 // create node 
-struct Employee* CreateNode(const char* value)
+struct Employee* CreateNode(const char* Name)
+// include const char* Salary, const char* phoneNumber)
 {
 	struct Employee* newNode = NULL;
-	int stringLength = strlen(value); /* Get the length of our string */ 
-	char* newString = malloc(sizeof(char) * stringLength + 1);
-	if (newString == NULL)
+	int nameLength = strlen(Name); /* Get the length of our string */ 
+    // int salaryLength = strlen(Salary); /* Get the length of our string */ 
+	// int phoneNumberLength = strlen(phoneNumber); /* Get the length of our string */ 
+	char* nameString = malloc(sizeof(char) * nameLength + 1);
+	if (nameString == NULL)
 		return NULL; /* Failed to allocate our string, can't proceed */
 	
 	newNode = malloc(sizeof(struct Employee));
 	if (newNode == NULL)
 	{
-		free(newString); /* remember that we allocated but now can't use */
+		free(nameString); /* remember that we allocated but now can't use */
 		return NULL; /* This case means cannot allocate */
 	}
-	strcpy(newString, value); /* Copy the string value over */
+	strcpy(nameString, Name); /* Copy the string value over */
 	
 	newNode->next = NULL; /* Ensure next is NULL */	
 	/* Time to copy our value to our node */
-	newNode->ID = newString;
+	// newNode->ID = newString;
+    newNode->Name = nameString; 
 	
 	return newNode;
 }
@@ -64,6 +68,8 @@ int main()
             char *Name = strtok(NULL, " ");
             char *Salary = strtok(NULL, " ");
             char *phoneNumber = strtok(NULL, " ");
+            
+            CreateNode(Name); 
 
             employee1.Name = Name;
             employee1.Salary = atoi(Salary);
