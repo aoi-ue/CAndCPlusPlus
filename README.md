@@ -1,10 +1,12 @@
-# CAndCPlusPlus 👨‍💻
+`# CAndCPlusPlus 👨‍💻
 This repo contains practice, assignment and projects. 
 
 
 ### Assignments 📝
 
 #### 23 Sep - 27 Sep
+
+- [] Build a live application Database to perform CRuD
 
 #### 16 Sep - 20 Sep
 
@@ -14,7 +16,7 @@ This repo contains practice, assignment and projects.
 #### 09 Sep - 13 Sep 
 
 - [ ] reBuild a Converter 
-- [ ] reBuild a Simple Calculator
+- [ ] reBuild a Simple Calculator and for Binary and for Hexidecimal 
 
 #### 02 Sep - 06 Sep 
 
@@ -25,7 +27,12 @@ This repo contains practice, assignment and projects.
 
 
 ### Resources to research work 🤔
+- [ ] Experiment: Memory allocation of byte using struct with different data type 
+- [ ] Experiment: How Classes can replace struc 
+- [ ] Write a code example on Struc, Enum, typedef and Union 
 
+- [ ] Experiment: RAM usage for computation operation 
+- [ ] Write a code example to calculate the merge sort 
 
 - [ ] Write a code example for function pointer 
 - [ ] Write a code example to compare const - char - array 
@@ -34,20 +41,20 @@ This repo contains practice, assignment and projects.
 - [ ] Write a calculator for binary arithmetic
 - [ ] Write a convertor from Hexadecimal - floating point - decimal 
 
-- [ ] Write a code example to explain Stack & Heap 
+- [ ] Write a code example to explain Stack & Heap for Memory Allocation/./; 
 - [ ] Write a code example in Static Cast, using Malloc()  
 - [ ] Write an code example to prove Pass By Value, Pass Argument by Reference  
 - [ ] Experiment: Dynamic Memory Allocation with Malloc, Realloc, Calloc
 - [ ] Write an code example to handle (Memory) Address - De-referencing
 - [ ] Write an example to Why When How to use a Pointer
 
-- [ ] Refactor to Recursive and While loop
+- [ ] Refactor For to Recursion and While loop
 - [ ] Build Bubble, Selection, Insertion and Merge sort using nested For loops
 
-- [ ] Write an example case of a Floating Point 
+- [ ] Write an example case of a Floating Point and 2's Complement
 
 - [ ] Write a case example of Scoping: global variable using static 
-- [ ] Write a code example to do Pointers to hold an address for a memory 
+- [ ] Write a code example to do Pointers to hold an address for a memory (for int, char, float)
 
 - [ ] Experiment: Unsigned Int and Boolean   
 
