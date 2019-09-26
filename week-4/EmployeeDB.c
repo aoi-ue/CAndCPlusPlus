@@ -6,42 +6,14 @@ struct Employee
 {
     int ID; // autoincrement
     char *Name;
-    int Salary;      //check for zero
+    int Salary;  //check for zero
     int phoneNumber; //optional
     struct Employee* next; 
 };
 
-// create node 
-struct Employee* CreateNode(const char* Name)
-// include const char* Salary, const char* phoneNumber)
-{
-	struct Employee* newNode = NULL;
-	int nameLength = strlen(Name); /* Get the length of our string */ 
-    // int salaryLength = strlen(Salary); /* Get the length of our string */ 
-	// int phoneNumberLength = strlen(phoneNumber); /* Get the length of our string */ 
-	char* nameString = malloc(sizeof(char) * nameLength + 1);
-	if (nameString == NULL)
-		return NULL; /* Failed to allocate our string, can't proceed */
-	
-	newNode = malloc(sizeof(struct Employee));
-	if (newNode == NULL)
-	{
-		free(nameString); /* remember that we allocated but now can't use */
-		return NULL; /* This case means cannot allocate */
-	}
-	strcpy(nameString, Name); /* Copy the string value over */
-	
-	newNode->next = NULL; /* Ensure next is NULL */	
-	/* Time to copy our value to our node */
-	// newNode->ID = newString;
-    newNode->Name = nameString; 
-	
-	return newNode;
-}
+// add new employee node  
 
-// add node 
-
-// remove node by ID
+// remove employee node by ID
 
 // printall 
 
@@ -49,7 +21,7 @@ struct Employee* CreateNode(const char* Name)
 
 // quit and remove all entries (free memory)
 
-// Create a menu page and Emun for switch cases
+// handle Cases 
 int main()
 {
     printf("Welcome to our Employee Database!\n");
@@ -64,13 +36,10 @@ int main()
         {
             struct Employee employee1;
 
-            // call createNode
             char *Name = strtok(NULL, " ");
             char *Salary = strtok(NULL, " ");
             char *phoneNumber = strtok(NULL, " ");
             
-            CreateNode(Name); 
-
             employee1.Name = Name;
             employee1.Salary = atoi(Salary);
             if (phoneNumber != NULL) {
@@ -78,6 +47,11 @@ int main()
             } else {
                 employee1.phoneNumber = 0; 
             }
+
+            if (employee1.Salary == 0) {
+                printf("Invalid input, please try again."); 
+                continue; 
+            } 
 
             printf("Name: %s\n", employee1.Name);
             printf("Salary: %d\n", employee1.Salary);
@@ -90,8 +64,8 @@ int main()
             printf("%s\n", input);
         if (strcmp(input, "search") == 0)
             printf("%s\n", input);
-        if (strcmp(input, "quit") == 0)
-            printf("%s\n", input);
+        if (strcmp(input, "quit") == 0) 
+            printf("bye bye!"); 
 
     } while (strcmp(input, "quit") != 0);
 
