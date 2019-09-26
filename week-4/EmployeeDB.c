@@ -68,38 +68,38 @@ void AddToEnd(struct Employee **ppEmployee, int ID, const char *Name, int Salary
 
     /* This means we are at the LAST NODE! */
     curr->next = newNode;
-
 }
 
-void deleteNode(struct Employee **ppEmployee, int ID) 
-{ 
-    // Store head node 
-    struct Employee* temp = *ppEmployee, *prev; 
-  
-    // If head node itself holds the key to be deleted 
-    if (temp != NULL && temp->ID == ID) 
-    { 
-        *ppEmployee = temp->next;   // Changed head 
-        free(temp);               // free old head 
-        return; 
-    } 
-  
-    // Search for the key to be deleted, keep track of the 
-    // previous node as we need to change 'prev->next' 
-    while (temp != NULL && temp->ID != ID) 
-    { 
-        prev = temp; 
-        temp = temp->next; 
-    } 
-  
-    // If key was not present in linked list 
-    if (temp == NULL) return; 
-  
-    // Unlink the node from linked list 
-    prev->next = temp->next; 
-  
-    free(temp);  // Free memory 
-} 
+void deleteNode(struct Employee **ppEmployee, int ID)
+{
+    // Store head node
+    struct Employee *temp = *ppEmployee, *prev;
+
+    // If head node itself holds the key to be deleted
+    if (temp != NULL && temp->ID == ID)
+    {
+        *ppEmployee = temp->next; // Changed head
+        free(temp);               // free old head
+        return;
+    }
+
+    // Search for the key to be deleted, keep track of the
+    // previous node as we need to change 'prev->next'
+    while (temp != NULL && temp->ID != ID)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // If key was not present in linked list
+    if (temp == NULL)
+        return;
+
+    // Unlink the node from linked list
+    prev->next = temp->next;
+
+    free(temp); // Free memory
+}
 
 void PrintList(struct Employee *list)
 {
@@ -107,10 +107,22 @@ void PrintList(struct Employee *list)
     while (list != NULL)
     {
         /* We are on an actual node */
-        printf("Node[%d]: ID: %d\n", i++, list->ID);
+        printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID,list->Name, list->Salary, list->phoneNumber);
+
         list = list->next;
     }
 }
+
+// int search(struct Employee* head, int ID) 
+// { 
+//     struct Employee* current = head;  // Initialize current 
+//     while (current != NULL) 
+//     { 
+//         if (current->ID == ID) 
+//             return true; 
+//         current = current->next; 
+//     } 
+//     return false; 
 
 int Count(struct Employee *list)
 {
@@ -144,7 +156,7 @@ int main()
 
     printf("Welcome to our Employee Database!\n");
     char input[100];
-    int latestID = 0;
+    int latestID = 1;
 
     struct Employee *employeeHead = NULL;
 
@@ -163,7 +175,7 @@ int main()
             int aSalary;
             int aPhoneNumber;
 
-            // reject non-number 
+            // reject non-number
             if (Salary == NULL || isANum(Salary) == 0)
             {
                 printf("Invalid input, please try again.\n");
@@ -185,16 +197,17 @@ int main()
 
             AddToEnd(&employeeHead, latestID, Name, aSalary, aPhoneNumber);
 
-            latestID++; 
+            latestID++;
 
-            printf("SUCCESS\n"); 
+            printf("SUCCESS\n");
 
-            PrintList(employeeHead); 
-            printf("There are %d Nodes in the list\n", Count(employeeHead));
+            // PrintList(employeeHead);
+            // printf("There are %d Nodes in the list\n", Count(employeeHead));
         }
-        if (strcmp(input, "remove") == 0) {
+        if (strcmp(input, "remove") == 0)
+        {
             char *ID = strtok(NULL, " ");
-            int aID; 
+            int aID;
 
             if (ID == NULL || isANum(ID) == 0)
             {
@@ -206,13 +219,36 @@ int main()
                 aID = atoi(ID);
             }
 
-            deleteNode(&employeeHead, aID); 
+            deleteNode(&employeeHead, aID);
 
-            printf("deleting\n"); 
+            printf("SUCCESS\n");
 
-            PrintList(employeeHead); 
-	        printf("There are %d Nodes in the list\n", Count(employeeHead));
+            // PrintList(employeeHead);
+            // printf("There are %d Nodes in the list\n", Count(employeeHead));
         }
+        if (strcmp(input, "printall") == 0) {
+            PrintList(employeeHead); 
+        }
+
+        if (strcmp(input, "search") == 0) {
+            char* mode = strtok(NULL, " ");
+            //  char *Item = strtok(NULL, " ");
+
+            if (strcmp(mode, "-id") == 0) {
+                printf("id");
+            }
             
+            if (strcmp(mode, "-name") == 0) {
+                printf("name");
+            }
+            if (strcmp(mode, "-salary") == 0) {
+                printf("sal");
+            }
+            if (strcmp(mode, "-phonenum") == 0) {
+                printf("pn");
+            }
+        }
+        
+
     } while (strcmp(input, "quit") != 0);
 }
