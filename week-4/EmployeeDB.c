@@ -68,7 +68,38 @@ void AddToEnd(struct Employee **ppEmployee, int ID, const char *Name, int Salary
 
     /* This means we are at the LAST NODE! */
     curr->next = newNode;
+
 }
+
+void deleteNode(struct Employee **ppEmployee, int ID) 
+{ 
+    // Store head node 
+    struct Employee* temp = *ppEmployee, *prev; 
+  
+    // If head node itself holds the key to be deleted 
+    if (temp != NULL && temp->ID == ID) 
+    { 
+        *ppEmployee = temp->next;   // Changed head 
+        free(temp);               // free old head 
+        return; 
+    } 
+  
+    // Search for the key to be deleted, keep track of the 
+    // previous node as we need to change 'prev->next' 
+    while (temp != NULL && temp->ID != ID) 
+    { 
+        prev = temp; 
+        temp = temp->next; 
+    } 
+  
+    // If key was not present in linked list 
+    if (temp == NULL) return; 
+  
+    // Unlink the node from linked list 
+    prev->next = temp->next; 
+  
+    free(temp);  // Free memory 
+} 
 
 void PrintList(struct Employee *list)
 {
@@ -76,7 +107,7 @@ void PrintList(struct Employee *list)
     while (list != NULL)
     {
         /* We are on an actual node */
-        printf("Node[%d]: %d\n", i++, list->ID);
+        printf("Node[%d]: ID: %d\n", i++, list->ID);
         list = list->next;
     }
 }
@@ -153,10 +184,35 @@ int main()
             }
 
             AddToEnd(&employeeHead, latestID, Name, aSalary, aPhoneNumber);
-    
+
+            latestID++; 
+
             printf("SUCCESS\n"); 
+
+            PrintList(employeeHead); 
+            printf("There are %d Nodes in the list\n", Count(employeeHead));
         }
-        if (strcmp(input, "remove") == 0)
-            printf("%s\n", input);
+        if (strcmp(input, "remove") == 0) {
+            char *ID = strtok(NULL, " ");
+            int aID; 
+
+            if (ID == NULL || isANum(ID) == 0)
+            {
+                printf("Invalid input, please try again.\n");
+                continue;
+            }
+            else
+            {
+                aID = atoi(ID);
+            }
+
+            deleteNode(&employeeHead, aID); 
+
+            printf("deleting\n"); 
+
+            PrintList(employeeHead); 
+	        printf("There are %d Nodes in the list\n", Count(employeeHead));
+        }
+            
     } while (strcmp(input, "quit") != 0);
 }
