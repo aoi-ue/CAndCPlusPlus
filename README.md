@@ -48,7 +48,7 @@ This repo contains practice, assignment and projects.
 - [ ] Write an code example to handle (Memory) Address - De-referencing
 - [ ] Write an example to Why When How to use a Pointer
 
-- [ ] Refactor For to Recursion and While loop
+- [ ] Refactor For loop to Recursion and While loop
 - [ ] Build Bubble, Selection, Insertion and Merge sort using nested For loops
 
 - [ ] Write an example case of a Floating Point and 2's Complement
@@ -61,15 +61,16 @@ This repo contains practice, assignment and projects.
 - [ ] Experiment: Array and Strings with Memory Allocation to CPU
 
 - [ ] Write a Simple Array and Linked List in data structure 
-- [x] Write Recursive code 
 - [ ] Write a code example in C code to calculate Big O
  
 - [x] Experiment: Conditional statement with pre and post increment, taking Precedence & Associativity in consideration 
 
 - [ ] Write a code example to compare Data type and modifier [int short char float double + unsigned(+-)/long(extension)] within x32/64 bytes
 - [x] Write a code example for Bitwise and its application 
-- [ ] Build a virtual memory to allocate binary value with bits/byte, considering arithemtic/bitwise precedence and performance
+- [ ] Build a virtual memory to allocate binary value with bits/byte, with Text Heap Stack in Memory Layout
+
+- [ ] Experiment arithemtic/bitwise precedence and performance
 
 - [ ] Write up compilation process in C/C++ from High Level to Assembly to Binary
 - [ ] Write a code example to comparing processor performance between Compiled and Interpreted 
-- [ ] Build a PC using Memory + CPU > CU + ACU + Registers referencing to Computer Architecture 
+- [ ] Build a PC using Hard/Solid state Memory + RAM + Cache + CPU > CU + ACU + Registers referencing to Computer Architecture 
