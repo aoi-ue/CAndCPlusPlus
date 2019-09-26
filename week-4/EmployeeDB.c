@@ -11,15 +11,116 @@ struct Employee
     struct Employee* next; 
 };
 
-// add new employee node  
+
+// add new employee node at the end
+void AddToEnd(struct Node** Employee, const char* value)
+{
+	struct Node* curr = *Employee;
+	
+	struct Node* newNode = CreateNode(value);
+	if (newNode == NULL)
+    {
+        printf("AddToEnd failed (CreateNode failed)\n");
+        return; /* Cannot allocate the node */
+    }
+		
+	
+	if (curr == NULL)
+	{
+		/* We don't even have a single node */
+		/* Time to create and set it as the first */		
+		/* Malloc is successful, time to link to the first */
+		*ppList = newNode;
+		return;
+	}
+	
+	/* Means that we are on a node, need to ensure that this is the LAST NODE */
+	while(curr->next != NULL)
+	{
+		curr = curr->next;
+	}
+	
+	/* This means we are at the LAST NODE! */
+	curr->next = newNode;
+}
+
+
 
 // remove employee node by ID
+void deleteNode(struct Node **head_ref, int key) 
+{ 
+    // Store head node 
+    struct Node* temp = *head_ref, *prev; 
+  
+    // If head node itself holds the key to be deleted 
+    if (temp != NULL && temp->data == key) 
+    { 
+        *head_ref = temp->next;   // Changed head 
+        free(temp);               // free old head 
+        return; 
+    } 
+  
+    // Search for the key to be deleted, keep track of the 
+    // previous node as we need to change 'prev->next' 
+    while (temp != NULL && temp->data != key) 
+    { 
+        prev = temp; 
+        temp = temp->next; 
+    } 
+  
+    // If key was not present in linked list 
+    if (temp == NULL) return; 
+  
+    // Unlink the node from linked list 
+    prev->next = temp->next; 
+  
+    free(temp);  // Free memory 
+} 
 
-// printall 
+
+// printall
+void PrintList(struct Node* list)
+{
+	int i = 0;
+	while (list != NULL)
+	{
+		/* We are on an actual node */
+		printf("Node[%d]: %s\n", i++, list->value);
+		list = list->next;
+	}
+}
 
 // search
+bool search(struct Node* head, int x) 
+{ 
+    struct Node* current = head;  // Initialize current 
+    while (current != NULL) 
+    { 
+        if (current->key == x) 
+            return true; 
+        current = current->next; 
+    } 
+    return false; 
 
 // quit and remove all entries (free memory)
+void FreeList(struct Node** pList)
+{
+	struct Node* curr = *pList;
+    struct Node* temp = 0;
+    if(curr == NULL)
+    {
+        printf("FreeList failed (Linked List is empty)");
+        return;
+    }
+    while(curr != NULL)
+    {       
+        temp = curr->next;
+        free(curr->value);
+        free(curr);
+        curr = temp;
+    }
+    *pList = NULL;
+}
 
 // handle Cases 
 int main()
