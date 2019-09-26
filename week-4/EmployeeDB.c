@@ -107,22 +107,22 @@ void PrintList(struct Employee *list)
     while (list != NULL)
     {
         /* We are on an actual node */
-        printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID,list->Name, list->Salary, list->phoneNumber);
+        printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID, list->Name, list->Salary, list->phoneNumber);
 
         list = list->next;
     }
 }
 
-// int search(struct Employee* head, int ID) 
-// { 
-//     struct Employee* current = head;  // Initialize current 
-//     while (current != NULL) 
-//     { 
-//         if (current->ID == ID) 
-//             return true; 
-//         current = current->next; 
-//     } 
-//     return false; 
+// int search(struct Employee* head, int ID)
+// {
+//     struct Employee* current = head;  // Initialize current
+//     while (current != NULL)
+//     {
+//         if (current->ID == ID)
+//             return true;
+//         current = current->next;
+//     }
+//     return false;
 
 int Count(struct Employee *list)
 {
@@ -226,29 +226,36 @@ int main()
             // PrintList(employeeHead);
             // printf("There are %d Nodes in the list\n", Count(employeeHead));
         }
-        if (strcmp(input, "printall") == 0) {
-            PrintList(employeeHead); 
+        if (strcmp(input, "printall") == 0)
+        {
+            PrintList(employeeHead);
         }
 
-        if (strcmp(input, "search") == 0) {
-            char* mode = strtok(NULL, " ");
+        if (strcmp(input, "search") == 0)
+        {
+            char *mode = strtok(NULL, " ");
             //  char *Item = strtok(NULL, " ");
 
-            if (strcmp(mode, "-id") == 0) {
+            if (strcmp(mode, "-id") == 0)
+            {
                 printf("id");
             }
-            
-            if (strcmp(mode, "-name") == 0) {
+
+            if (strcmp(mode, "-name") == 0)
+            {
                 printf("name");
             }
-            if (strcmp(mode, "-salary") == 0) {
+
+            if (strcmp(mode, "-salary") == 0)
+            {
                 printf("sal");
             }
-            if (strcmp(mode, "-phonenum") == 0) {
+
+            if (strcmp(mode, "-phonenum") == 0)
+            {
                 printf("pn");
             }
         }
-        
 
     } while (strcmp(input, "quit") != 0);
 }
