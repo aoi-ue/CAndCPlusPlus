@@ -1,4 +1,4 @@
-`# CAndCPlusPlus 👨‍💻
+# CAndCPlusPlus 👨‍💻
 This repo contains practice, assignment and projects. 
 
 
