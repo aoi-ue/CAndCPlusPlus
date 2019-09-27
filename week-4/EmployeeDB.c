@@ -113,16 +113,17 @@ void PrintList(struct Employee *list)
     }
 }
 
-// int search(struct Employee* head, int ID)
-// {
-//     struct Employee* current = head;  // Initialize current
-//     while (current != NULL)
-//     {
-//         if (current->ID == ID)
-//             return true;
-//         current = current->next;
-//     }
-//     return false;
+int Search(struct Employee *head, int mode)
+{
+    struct Employee *curr = head; // Initialize current
+    while (curr->next != NULL)
+    {
+        if (curr->ID == mode)
+            printf("found");
+        curr = curr->next;
+    }
+    return 0;
+}
 
 int Count(struct Employee *list)
 {
@@ -138,7 +139,7 @@ int Count(struct Employee *list)
 
 int isANum(char *input)
 {
-    int count = 0;
+    unsigned long count = 0;
     for (int i = 0; input[i] != '\0'; i++)
     {
         if (input[i] >= '0' && input[i] <= '9')
@@ -234,11 +235,13 @@ int main()
         if (strcmp(input, "search") == 0)
         {
             char *mode = strtok(NULL, " ");
-            //  char *Item = strtok(NULL, " ");
+            char *Item = strtok(NULL, " ");
 
             if (strcmp(mode, "-id") == 0)
             {
-                printf("id");
+                printf("id searching");
+                int aItem = atoi(Item);
+                Search(employeeHead, aItem);
             }
 
             if (strcmp(mode, "-name") == 0)
@@ -255,6 +258,13 @@ int main()
             {
                 printf("pn");
             }
+        }
+
+        if (strcmp(input, "quit") == 0)
+        {
+            free(employeeHead);
+            printf("bye bye!\n");
+            break;
         }
 
     } while (strcmp(input, "quit") != 0);
