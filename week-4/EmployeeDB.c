@@ -6,7 +6,7 @@ struct Employee
 {
     int ID; // autoincrement
     char *Name;
-    int Salary;      //check for zero
+    int Salary; //check for zero
     int phoneNumber; //optional
     struct Employee *next;
 };
@@ -110,18 +110,61 @@ void PrintList(struct Employee *list)
     {
         /* We are on an actual node */
         printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID, list->Name, list->Salary, list->phoneNumber);
-
         list = list->next;
     }
 }
 
-int Search(struct Employee *head, int mode)
+int SearchID(struct Employee *head, int mode)
 {
     struct Employee *curr = head; // Initialize current
-    while (curr->next != NULL)
+    while (curr != NULL)
     {
-        if (curr->ID == mode)
-            printf("found");
+        if (curr->ID == mode)  {
+            printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
+            break; 
+        } else printf("NOT FOUND\n"); 
+        curr = curr->next;
+    }
+    return 0;
+}
+
+int SearchName(struct Employee *head, char* mode)
+{
+    struct Employee *curr = head; // Initialize current
+    while (curr != NULL)
+    {
+        if (curr->Name == mode)  {
+            printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
+            break; 
+        } else printf("NOT FOUND\n"); 
+        curr = curr->next;
+    }
+    return 0;
+}
+
+int SearchSalary(struct Employee *head, int mode)
+{
+    struct Employee *curr = head; // Initialize current
+    while (curr != NULL)
+    {
+        if (curr->Salary == mode)  {
+            printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
+            break; 
+        } else printf("NOT FOUND\n"); 
+        curr = curr->next;
+    }
+    return 0;
+}
+
+int SearchPhoneNumber(struct Employee *head, int mode)
+{
+    struct Employee *curr = head; // Initialize current
+    while (curr != NULL)
+    {
+        if (curr->phoneNumber == mode)  {
+            printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
+            break; 
+        } else printf("NOT FOUND\n"); 
         curr = curr->next;
     }
     return 0;
@@ -167,6 +210,7 @@ int main()
         fgets(input, 100, stdin);
         strtok(input, "\n");
         strtok(input, " ");
+        
         if (strcmp(input, "add") == 0)
         {
 
@@ -243,27 +287,32 @@ int main()
         {
             char *mode = strtok(NULL, " ");
             char *Item = strtok(NULL, " ");
+            int aMode = atoi(mode);
+            int aItem = atoi(Item);
+
+            if (aMode == 0) {
+                printf("FAILED\n");  
+                continue; 
+            } 
 
             if (strcmp(mode, "-id") == 0)
             {
-                printf("id searching");
-                int aItem = atoi(Item);
-                Search(employeeHead, aItem);
-            }
+                SearchID(employeeHead, aItem);
+            } 
 
             if (strcmp(mode, "-name") == 0)
             {
-                printf("name");
+                SearchName(employeeHead,Item); 
             }
 
             if (strcmp(mode, "-salary") == 0)
             {
-                printf("sal");
+                SearchSalary(employeeHead,aItem); 
             }
 
             if (strcmp(mode, "-phonenum") == 0)
             {
-                printf("pn");
+                SearchPhoneNumber(employeeHead,aItem);
             }
         }
 
