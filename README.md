@@ -6,7 +6,7 @@ This repo contains practice, assignment and projects.
 
 #### 23 Sep - 27 Sep
 
-- [] Build a live application Database to perform CRuD
+- [ ] Build a live application Database to perform CRuD
 
 #### 16 Sep - 20 Sep
 
