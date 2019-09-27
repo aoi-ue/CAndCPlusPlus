@@ -81,7 +81,7 @@ void deleteNode(struct Employee **ppEmployee, int ID)
         *ppEmployee = temp->next; // Changed head
         free(temp);               // free old head
         return;
-    }  
+    }
 
     // Search for the key to be deleted, keep track of the
     // previous node as we need to change 'prev->next'
@@ -92,10 +92,9 @@ void deleteNode(struct Employee **ppEmployee, int ID)
     }
 
     // If key was not present in linked list
-    if (temp == NULL)
-    {
-        printf("Failed");
-        //return;
+    if (temp == NULL) {
+        //printf("Failed"); 
+        return; 
     }
 
     // Unlink the node from linked list
@@ -151,7 +150,6 @@ int isANum(char *input)
         }
     }
     int result = count == strlen(input) ? 1 : 0;
-
     return result;
 }
 
@@ -221,13 +219,17 @@ int main()
             else
             {
                 aID = atoi(ID);
+                printf("%d\n", aID); 
             }
 
-            if (aID == 0)
-            {
-                printf("FAILED\n");
-                continue;
-            }
+            if (aID == 0) {
+                printf("FAILED\n");  
+                continue; 
+            } 
+
+            deleteNode(&employeeHead, aID);
+
+            printf("SUCCESS\n");
 
             // PrintList(employeeHead);
             // printf("There are %d Nodes in the list\n", Count(employeeHead));
