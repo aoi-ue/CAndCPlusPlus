@@ -6,7 +6,7 @@ struct Employee
 {
     int ID; // autoincrement
     char *Name;
-    int Salary; //check for zero
+    int Salary;      //check for zero
     int phoneNumber; //optional
     struct Employee *next;
 };
@@ -92,9 +92,10 @@ void deleteNode(struct Employee **ppEmployee, int ID)
     }
 
     // If key was not present in linked list
-    if (temp == NULL) {
-        //printf("Failed"); 
-        return; 
+    if (temp == NULL)
+    {
+        //printf("Failed");
+        return;
     }
 
     // Unlink the node from linked list
@@ -103,13 +104,39 @@ void deleteNode(struct Employee **ppEmployee, int ID)
     free(temp); // Free memory
 }
 
+void FreeList(struct Employee **ppEmployee)
+{
+    struct Employee *curr = *ppEmployee;
+    struct Employee *temp = 0;
+    if (curr == NULL)
+    {
+        printf("FreeList failed (Linked List is empty)");
+        return;
+    }
+    while (curr != NULL)
+    {
+        temp = curr->next;
+        free(curr->Name);
+        free(curr);
+        curr = temp;
+    }
+    *ppEmployee = NULL;
+}
+
 void PrintList(struct Employee *list)
 {
     int i = 0;
     while (list != NULL)
     {
         /* We are on an actual node */
-        printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID, list->Name, list->Salary, list->phoneNumber);
+        if (list->phoneNumber != -1)
+        {
+            printf("Entry[%d]: %d: %s: %d: %d\n", i++, list->ID, list->Name, list->Salary, list->phoneNumber);
+        }
+        else
+        {
+            printf("Entry[%d]: %d: %s: %d: %s\n", i++, list->ID, list->Name, list->Salary, "NULL");
+        }
         list = list->next;
     }
 }
@@ -119,26 +146,30 @@ int SearchID(struct Employee *head, int mode)
     struct Employee *curr = head; // Initialize current
     while (curr != NULL)
     {
-        if (curr->ID == mode)  {
+        if (curr->ID == mode)
+        {
             printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
-            break; 
-        } else printf("NOT FOUND\n"); 
+            return 1;
+        }
         curr = curr->next;
     }
+    printf("NOT FOUND\n");
     return 0;
 }
 
-int SearchName(struct Employee *head, char* mode)
+int SearchName(struct Employee *head, char *mode)
 {
     struct Employee *curr = head; // Initialize current
     while (curr != NULL)
     {
-        if (curr->Name == mode)  {
+        if (strcmp(curr->Name, mode) == 0)
+        {
             printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
-            break; 
-        } else printf("NOT FOUND\n"); 
+            return 1;
+        }
         curr = curr->next;
     }
+    printf("NOT FOUND\n");
     return 0;
 }
 
@@ -147,12 +178,14 @@ int SearchSalary(struct Employee *head, int mode)
     struct Employee *curr = head; // Initialize current
     while (curr != NULL)
     {
-        if (curr->Salary == mode)  {
+        if (curr->Salary == mode)
+        {
             printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
-            break; 
-        } else printf("NOT FOUND\n"); 
+            return 1;
+        }
         curr = curr->next;
     }
+    printf("NOT FOUND\n");
     return 0;
 }
 
@@ -161,12 +194,14 @@ int SearchPhoneNumber(struct Employee *head, int mode)
     struct Employee *curr = head; // Initialize current
     while (curr != NULL)
     {
-        if (curr->phoneNumber == mode)  {
+        if (curr->phoneNumber == mode)
+        {
             printf("FOUND: %d: %s: %d: %d\n", curr->ID, curr->Name, curr->Salary, curr->phoneNumber);
-            break; 
-        } else printf("NOT FOUND\n"); 
+            return 1;
+        }
         curr = curr->next;
     }
+    printf("NOT FOUND\n");
     return 0;
 }
 
@@ -210,7 +245,6 @@ int main()
         fgets(input, 100, stdin);
         strtok(input, "\n");
         strtok(input, " ");
-        
         if (strcmp(input, "add") == 0)
         {
 
@@ -221,7 +255,6 @@ int main()
             int aSalary;
             int aPhoneNumber;
 
-            // reject non-number
             if (Salary == NULL || isANum(Salary) == 0)
             {
                 printf("Invalid input, please try again.\n");
@@ -238,7 +271,13 @@ int main()
             }
             else
             {
-                aPhoneNumber = 0;
+                aPhoneNumber = -1;
+            }
+
+            if (aSalary == 0)
+            {
+                printf("no zero salary allowed");
+                continue;
             }
 
             AddToEnd(&employeeHead, latestID, Name, aSalary, aPhoneNumber);
@@ -247,8 +286,6 @@ int main()
 
             printf("SUCCESS\n");
 
-            // PrintList(employeeHead);
-            // printf("There are %d Nodes in the list\n", Count(employeeHead));
         }
         if (strcmp(input, "remove") == 0)
         {
@@ -263,20 +300,19 @@ int main()
             else
             {
                 aID = atoi(ID);
-                printf("%d\n", aID); 
+                printf("%d\n", aID);
             }
 
-            if (aID == 0) {
-                printf("FAILED\n");  
-                continue; 
-            } 
+            if (aID == 0)
+            {
+                printf("FAILED\n");
+                continue;
+            }
 
             deleteNode(&employeeHead, aID);
 
             printf("SUCCESS\n");
-
-            // PrintList(employeeHead);
-            // printf("There are %d Nodes in the list\n", Count(employeeHead));
+            
         }
         if (strcmp(input, "printall") == 0)
         {
@@ -287,38 +323,46 @@ int main()
         {
             char *mode = strtok(NULL, " ");
             char *Item = strtok(NULL, " ");
-            int aMode = atoi(mode);
+
+            if (strcmp(mode, "-name") == 0)
+            {
+                SearchName(employeeHead, Item);
+                continue;
+            }
+
+            if (Item == NULL || isANum(Item) == 0)
+            {
+                printf("Invalid input, please try again.\n");
+                continue;
+            }
+
             int aItem = atoi(Item);
 
-            if (aMode == 0) {
-                printf("FAILED\n");  
-                continue; 
-            } 
+            if (aItem == 0)
+            {
+                printf("FAILED\n");
+                continue;
+            }
 
             if (strcmp(mode, "-id") == 0)
             {
                 SearchID(employeeHead, aItem);
-            } 
-
-            if (strcmp(mode, "-name") == 0)
-            {
-                SearchName(employeeHead,Item); 
             }
 
             if (strcmp(mode, "-salary") == 0)
             {
-                SearchSalary(employeeHead,aItem); 
+                SearchSalary(employeeHead, aItem);
             }
 
             if (strcmp(mode, "-phonenum") == 0)
             {
-                SearchPhoneNumber(employeeHead,aItem);
+                SearchPhoneNumber(employeeHead, aItem);
             }
         }
 
         if (strcmp(input, "quit") == 0)
         {
-            free(employeeHead);
+            FreeList(&employeeHead);
             printf("bye bye!\n");
             break;
         }
