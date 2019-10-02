@@ -12,14 +12,20 @@ List::Node::~Node() {
 	--nodes_alive;
 }
 
+List::~List(){
+	list_count--; 
+	clear(); 
+}
+
 int List::Node::nodes_alive = 0;
 int List::list_count = 0;
 
-// List::List(){cout << "hello" << endl; cout << "bye";}  
 
 List::List() { 
 	head = nullptr; 
 	tail = nullptr; 
+	List::list_count++; 
+
 }
 
 List::List(const int *array, int size) {
@@ -43,6 +49,7 @@ List::List(const int *array, int size) {
 		curr = temp; 
 		if (i == size - 1) tail = temp; 
 	}
+	List::list_count++; 
 }
 
 void List::push_front(int value_) {
@@ -74,8 +81,51 @@ void List::push_back(int value_) {
 	tail = newNode; 
 }
 
+void List::pop_front() {
 
-List::~List(){}
+	if (head == nullptr) {
+		cout << "Nothing to pop from an empty list";
+		return; 
+	} else {
+		Node* next = head->next; 
+
+		if (head == tail) {
+			tail = next; 
+		}
+
+		delete head;
+		head = next; 
+		--size; 
+	}
+}
+
+void List::pop_back() {
+
+	Node* prev = nullptr; 
+	Node* curr = head; 
+
+	if (curr == NULL) {
+		return; 
+	} 
+
+	while (curr->next != NULL) {
+		prev = curr; 
+		curr = curr->next;  
+	}
+
+	if (head == tail) {
+		head = nullptr; 
+		tail = nullptr; 
+		delete curr; 
+		return; 
+	}
+
+	delete curr; 
+	tail = prev; 
+	--size;
+	prev->next = NULL; 
+}
+
 
 void List::clear() {
 
@@ -83,7 +133,7 @@ void List::clear() {
     Node* temp = nullptr;
     if(curr == nullptr) 
     {
-        printf("FreeList failed (Linked List is empty)");
+        cout << "FreeList failed (Linked List is empty)" << endl; 
         return;
     }
     while(curr != nullptr)
@@ -96,28 +146,23 @@ void List::clear() {
 	head = tail = nullptr; 
 }
 
-void List::pop_front() {
+    // TODO: returns the number of items in the list
+int List::list_size() const {
+	Node* curr = head; 
+	int i = 0;
 
-	if (head == nullptr) {
-		cout << "Nothing to pop from an empty list";
-		return; 
-	} else {
-		Node* next = head->next; 
-
-		if (head == tail) {
-			tail = next; 
-		}
-		
-		delete head;
-		head = next; 
-		--size; 
+	while (curr != NULL)
+	{
+		i++; /* We are on an actual node */
+		curr = curr->next;
 	}
+	return i; 
 }
 
-void List::pop_back() {
-
+// TODO: returns true if empty, else false
+bool List::empty() const {
+	return head == nullptr; 
 }
-
 
 int List::created_list_count() {
 	return list_count;
@@ -137,15 +182,3 @@ std::ostream& operator<<(std::ostream & os_, const List & list_)
 	}
 	return os_;
 }
-
-
-// List::modifyhead(Node* ptr)
-// {
-// 	head = ptr;
-// }
-
-/*
-int main()
-List haha;
-haha.modifyhead(0x345346456);
-*/
