@@ -31,8 +31,9 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
-- [ ] 
-- [ ] Experiment: Database with constructor with new and delete  
+- [ ] Experiment: Inheritance - Polymorphism - Run-time Type Identification (Static and Dynamic, typeid(e))
+
+- [ ] Experiment: build a Database using constructor with new and delete  
 - [ ] Write a code example on Struct and Classes code comparison with Private and Public with Static Variable
 
 - [ ] Write a code example on Binary Tree with Pre, In, Post Order 
