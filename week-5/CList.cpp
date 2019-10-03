@@ -8,11 +8,13 @@ List::Node::Node(int value_)
 	++nodes_alive;
 }
  
-List::Node::~Node() {
+List::Node::~Node() 
+{
 	--nodes_alive;
 }
 
-List::~List(){
+List::~List()
+{
 	list_count--; 
 	clear(); 
 }
@@ -20,16 +22,15 @@ List::~List(){
 int List::Node::nodes_alive = 0;
 int List::list_count = 0;
 
-
-List::List() { 
+List::List() 
+{ 
 	head = nullptr; 
 	tail = nullptr; 
 	List::list_count++; 
-
 }
 
-List::List(const int *array, int size) {
-	
+List::List(const int *array, int size) 
+{	
 	if (size == 0) {
 		cout << "are you sure? empty list is created." << endl; 
 		head = nullptr; 
@@ -52,7 +53,8 @@ List::List(const int *array, int size) {
 	List::list_count++; 
 }
 
-void List::push_front(int value_) {
+void List::push_front(int value_) 
+{
 	Node* newNode = new Node(value_); 
 	if (newNode == nullptr) {
 		cout << "memory allocation failed, no node" << endl; 
@@ -66,8 +68,8 @@ void List::push_front(int value_) {
 	head = newNode; 
 }
 
-
-void List::push_back(int value_) {
+void List::push_back(int value_) 
+{
 	Node* newNode = new Node(value_); 
 	if (newNode == nullptr) {
 		cout << "memory allocation failed, no node" << endl; 
@@ -81,26 +83,26 @@ void List::push_back(int value_) {
 	tail = newNode; 
 }
 
-void List::pop_front() {
-
-	if (head == nullptr) {
-		cout << "Nothing to pop from an empty list";
+void List::pop_front() 
+{
+	if (head == nullptr) 
+	{
 		return; 
 	} else {
 		Node* next = head->next; 
 
-		if (head == tail) {
+		if (head == tail) 
+		{
 			tail = next; 
 		}
-
 		delete head;
 		head = next; 
 		--size; 
 	}
 }
 
-void List::pop_back() {
-
+void List::pop_back() 
+{
 	Node* prev = nullptr; 
 	Node* curr = head; 
 
@@ -127,8 +129,8 @@ void List::pop_back() {
 }
 
 
-void List::clear() {
-
+void List::clear() 
+{
 	Node* curr = head;
     Node* temp = nullptr;
     if(curr == nullptr) 
@@ -142,33 +144,34 @@ void List::clear() {
         delete curr;
         curr = temp;
 	}
-
 	head = tail = nullptr; 
 }
 
-    // TODO: returns the number of items in the list
-int List::list_size() const {
+int List::list_size() const 
+{
 	Node* curr = head; 
 	int i = 0;
 
 	while (curr != NULL)
 	{
-		i++; /* We are on an actual node */
+		i++; 
 		curr = curr->next;
 	}
 	return i; 
 }
 
-// TODO: returns true if empty, else false
-bool List::empty() const {
+bool List::empty() const 
+{
 	return head == nullptr; 
 }
 
-int List::created_list_count() {
+int List::created_list_count() 
+{
 	return list_count;
 }
 
-int List::alive_node_count() {
+int List::alive_node_count() 
+{
 	return Node::nodes_alive;
 }
 
