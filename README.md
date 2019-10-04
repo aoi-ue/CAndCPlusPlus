@@ -1,12 +1,13 @@
 # CAndCPlusPlus 👨‍💻
 This repo contains practice, assignment and projects. 
 
-
 ### Assignments 📝
 
 #### 30 Sep - 04 Sep
 
-- [ ] Build a Linked List in C++ 
+- [x] Build a CSV Parser in C++ 
+- [ ] Refactor Past Projects in C++ (Diamond, Calculator, Convertor)
+- [x] Build a Linked List in C++ 
 
 #### 23 Sep - 27 Sep
 
@@ -31,9 +32,15 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
+- [ ] Write a code example of Function Templating
+
+- [ ] Experiment: Generic Programming using blueprint template that generate codes 
+
+- [ ] Experiment: Move Constructors and Move Assignments 
+- [ ] Write a code example Operator and Function Overloading in Arithemtic 
 - [ ] Experiment: Inheritance - Polymorphism - Run-time Type Identification (Static and Dynamic, typeid(e))
 
-- [ ] Experiment: build a Database using constructor with new and delete  
+- [ ] Experiment: build a Database using constructor and destructor with new and delete  
 - [ ] Write a code example on Struct and Classes code comparison with Private and Public with Static Variable
 
 - [ ] Write a code example on Binary Tree with Pre, In, Post Order 
