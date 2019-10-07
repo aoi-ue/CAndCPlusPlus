@@ -1,3 +1,11 @@
+/******************************************************************************
+filename CSVParser.h
+author Lian Yuhan
+email yuhan.lian@digipen.edu
+date created 03 Oct 2019
+Brief Description: A header file containing CSV file parsing class
+******************************************************************************/
+
 #include <fstream>
 #include <iostream>
 #include <string>
