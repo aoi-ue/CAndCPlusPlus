@@ -3,20 +3,24 @@ This repo contains practice, assignment and projects.
 
 ### Assignments 📝
 
-#### 30 Sep - 04 Sep
+#### 07 Oct - 11 Oct 
 
-- [x] Build a CSV Parser in C++ 
+- [ ] Build Binary Tree that Find Height, Search and Delete leaf node. 
+
+#### 30 Sep - 04 Oct
+
+- [x] ~Build a CSV Parser in C++~ 
 - [ ] Refactor Past Projects in C++ (Diamond, Calculator, Convertor)
-- [x] Build a Linked List in C++ 
+- [x] ~Build a Linked List in C++~
 
 #### 23 Sep - 27 Sep
 
-- [x] Build a live application Database to perform CRuD
+- [x] ~Build a live application Database to perform CRuD~
 
 #### 16 Sep - 20 Sep
 
-- [x] Build an Word Encryption
-- [ ] Build a Linked List 
+- [x] ~Build an Word Encryption~
+- [ ] Build a Linked List in C and C++, to 
 
 #### 09 Sep - 13 Sep 
 
@@ -83,4 +87,4 @@ This repo contains practice, assignment and projects.
 - [ ] Build a virtual memory to allocate binary value with bits/byte, with Text Heap Stack in Memory Layout
 
 - [ ] Write up compilation process in C/C++ from High Level to Assembly to Binary
-- [ ] Build a PC considering Hard/Solid state Memory + RAM + Cache + CPU -> CU + ACU + Registers referencing to Computer Architecture 
+- [ ] Build a PC with Hard/Solid state Memory + RAM + Cache + CPU -> CU + ACU + Registers, referencing to Computer Architecture & System
