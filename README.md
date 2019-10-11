@@ -5,6 +5,7 @@ This repo contains practice, assignment and projects.
 
 #### 07 Oct - 11 Oct 
 
+- [x] Write a Mutex function to run multi-core 
 - [ ] Build Binary Tree that Find Height, Search and Delete leaf node. 
 
 #### 30 Sep - 04 Oct
@@ -36,7 +37,17 @@ This repo contains practice, assignment and projects.
 
 ### Resources to research work 🤔
 
-- [ ] Write a code example of Function Templating
+- [ ] Prepare for concurrency and concurrent programming with MulitThreads and Cores
+
+- [ ] Read up on Static_assert, Varadic Templates, Ranged Based For Loops, Initializer List, noexcept, override, move semantics, Lambda functions, unordered containers, Explicit default or delete generated functions   
+
+- [ ] Write a code example on Strongly Typed Enums == static_cast <int> (color::Red)
+
+- [ ] Write a code example on Smart Pointer using nullptr, Smart Contructs to manage memory 
+
+- [ ] Write a code example of Vector, BEque, List, String, Set, Map, Stack, Queue, BitSet
+
+- [ ] Write a code example of Function Templating and TMP 
 
 - [ ] Experiment: Generic Programming using blueprint template that generate codes 
 
