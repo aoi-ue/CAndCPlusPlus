@@ -1,4 +1,4 @@
-# CAndCPlusPlus 👨‍💻
+# CAndCPlusPlus && Data Structure 👨‍💻
 This repo contains practice, assignment and projects. 
 
 ### Assignments 📝
@@ -21,13 +21,12 @@ This repo contains practice, assignment and projects.
 #### 16 Sep - 20 Sep
 
 - [x] ~Build an Word Encryption~
-- [ ] Build a Linked List in C and C++, to 
+- [ ] Build a Linked List in C and C++, 
 
 #### 09 Sep - 13 Sep 
 
-- [ ] Build a convertor from Hexadecimal - floating point - decimal 
+- [ ] Build a Convertor from Hexadecimal - floating point - decimal - binary 
 - [ ] Build a Simple Calculator with and without precedences, in decimal binary hexidecimal arithmetic
-- [ ] Build a Converter for Binary and for Hexidecimal and for Decimal
 
 #### 02 Sep - 06 Sep 
 
@@ -36,6 +35,8 @@ This repo contains practice, assignment and projects.
 - [x] ~~initialize C and basic set up~~
 
 ### Resources to research work 🤔
+
+- [ ] Write a code example on Tree Rotation and Promotion and AVL 
 
 - [ ] Prepare for concurrency and concurrent programming with MulitThreads and Cores
 
