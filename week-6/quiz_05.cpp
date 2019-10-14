@@ -23,9 +23,9 @@ class Square: public Rectangle {
 
 };
 
-
 int main () {
     Square s(5); 
     Rectangle r(3,4); 
-    std::cout << s.GetArea() << r.GetArea(); 
+
+    std::cout << s.GetArea() << std::endl << r.GetArea(); 
 }
