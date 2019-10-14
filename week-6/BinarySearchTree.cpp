@@ -1,73 +1,64 @@
 #include <iostream> 
 
-// C++ program to implement optimized delete in BST. 
-// #include <bits/stdc++.h> 
 using namespace std; 
 
 struct Node { 
-	int key; 
+	int value; 
 	struct Node *left, *right; 
+	int height; 
 }; 
 
-// A utility function to create a new BST node 
 Node* newNode(int item) 
 { 
 	Node* temp = new Node; 
-	temp->key = item; 
+	temp->value = item; 
 	temp->left = temp->right = NULL; 
 	return temp; 
 } 
 
-// A utility function to do inorder traversal of BST 
+int height(Node* node) {
+	if (node == NULL) return 0; 
+	return node->height; 
+}
+
 void inorder(Node* root) 
 { 
 	if (root != NULL) { 
 		inorder(root->left); 
-		printf("%d ", root->key); 
+		printf("%d ", root->value); 
 		inorder(root->right); 
 	} 
 } 
+/* Practice Two - AVL Tree insertion */ 
 
-/* A utility function to insert a new node with given key in BST */
-Node* insert(Node* node, int key) 
+Node* insert(Node* node, int value) 
 { 
-	/* If the tree is empty, return a new node */
 	if (node == NULL) 
-		return newNode(key); 
+		return newNode(value); 
 
-	/* Otherwise, recur down the tree */
-	if (key < node->key) 
-		node->left = insert(node->left, key); 
+	if (value < node->value) 
+		node->left = insert(node->left, value); 
 	else
-		node->right = insert(node->right, key); 
+		node->right = insert(node->right, value); 
 
-	/* return the (unchanged) node pointer */
 	return node; 
 } 
 
-/* Given a binary search tree and a key, this function deletes the key 
-and returns the new root */
+/* Practice One - Delete */ 
 Node* deleteNode(Node* root, int k) 
 { 
-	// Base case 
 	if (root == NULL) 
 		return root; 
 
-	// Recursive calls for ancestors of 
-	// node to be deleted 
-	if (root->key > k) { 
+	if (root->value > k) { 
 		root->left = deleteNode(root->left, k); 
 		return root; 
 	} 
-	else if (root->key < k) { 
+	else if (root->value < k) { 
 		root->right = deleteNode(root->right, k); 
 		return root; 
 	} 
 
-	// We reach here when root is the node 
-	// to be deleted. 
-
-	// If one of the children is empty 
 	if (root->left == NULL) { 
 		Node* temp = root->right; 
 		delete root; 
@@ -79,42 +70,28 @@ Node* deleteNode(Node* root, int k)
 		return temp; 
 	} 
 
-	// If both children exist 
 	else { 
 
 		Node* succParent = root->right; 
 		
-		// Find successor 
-		Node *succ = root->right; 
+		Node* succ = root->right; 
 		while (succ->left != NULL) { 
 			succParent = succ; 
 			succ = succ->left; 
 		} 
 
-		// Delete successor. Since successor 
-		// is always left child of its parent 
-		// we can safely make successor's right 
-		// right child as left of its parent. 
 		succParent->left = succ->right; 
 
-		// Copy Successor Data to root 
-		root->key = succ->key; 
+		root->value = succ->value; 
 
-		// Delete Successor and return root 
 		delete succ;		 
 		return root; 
 	} 
 } 
 
-// Driver Program to test above functions 
 int main() 
 { 
-	/* Let us create following BST 
-			50 
-		/	 \ 
-		30	 70 
-		/ \ / \ 
-	20 40 60 80 */
+	
 	Node* root = NULL; 
 	root = insert(root, 50); 
 	root = insert(root, 30); 
