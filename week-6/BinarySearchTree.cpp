@@ -17,8 +17,17 @@ Node* newNode(int item)
 } 
 
 int height(Node* node) {
-	if (node == NULL) return 0; 
-	return node->height; 
+	if (node == NULL) return -1; 
+
+	int leftHeight = height(node->left);
+	int rightHeight = height(node->right); 
+
+	if (leftHeight > rightHeight) {
+		return leftHeight + 1; 
+	}
+	else {
+		return rightHeight + 1; 
+	}
 }
 
 void inorder(Node* root) 
@@ -29,8 +38,8 @@ void inorder(Node* root)
 		inorder(root->right); 
 	} 
 } 
-/* Practice Two - AVL Tree insertion */ 
 
+/* Practice Two - AVL Tree insertion */ 
 Node* insert(Node* node, int value) 
 { 
 	if (node == NULL) 
@@ -101,6 +110,8 @@ int main()
 	root = insert(root, 60); 
 	root = insert(root, 80); 
 
+	std::cout << "height of tree " << height(root) << endl; 
+
 	printf("Inorder traversal of the given tree \n"); 
 	inorder(root); 
 
@@ -118,6 +129,8 @@ int main()
 	root = deleteNode(root, 50); 
 	printf("Inorder traversal of the modified tree \n"); 
 	inorder(root); 
+
+	cout << "height of tree " << height(root) << endl; 
 
 	return 0; 
 } 
