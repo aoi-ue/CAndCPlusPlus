@@ -139,20 +139,20 @@ Node *deleteNode(Node *root, int k)
 	else
 	{
 
-		Node *succParent = root->right;
-
+		Node *succParent = root;
 		Node *succ = root->right;
+
 		while (succ->left != NULL)
 		{
 			succParent = succ;
 			succ = succ->left;
 		}
 
-		succParent->left = succ->right;
 
 		root->value = succ->value;
 
 		delete succ;
+		succParent->left = NULL; 
 		return root;
 	}
 }

@@ -67,6 +67,22 @@ int balanceFactor(Node *node)
     return height(node->left) - height(node->right);
 }
 
+Node *search(Node *node, int value) 
+{
+
+    if (node == NULL) return NULL; 
+    if (node->value == value) return node; 
+
+    if (node->value < value) 
+    {
+        return search(node->right, value); 
+    } 
+    else 
+    {
+        return search(node->left, value); 
+    }
+}
+
 /* Practice Two - AVL Tree insertion */
 Node *insert(Node *node, int value)
 {
@@ -139,9 +155,7 @@ Node *deleteNode(Node *node, int value)
 
     else
     {
-        Node *temp = node->right;
-        node->value = temp->value;
-        node->right = deleteNode(node->right,temp->value);
+        
     }
 }
 
@@ -154,6 +168,15 @@ int main()
     root = insert(root, 30);
     // root = insert(root, 40);
     // root = insert(root, 50);
+    Node *item = search(root, 40); 
+
+    if (item == NULL) 
+    {
+        cout << "Not Found" << endl;  
+    } else 
+    {
+        cout << item->value << endl; 
+    }
 
     printf("Inorder traversal of the AVL tree \n");
     inorder(root);
