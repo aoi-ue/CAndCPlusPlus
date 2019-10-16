@@ -60,17 +60,10 @@ void inorder(Node *root)
     }
 }
 
-bool rotateRequired(Node *node)
+int rotateRequired(Node *node)
 {
-    int difference = height(node->left) - height(node->right);
-    if (difference >= -1 && difference <= 1)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    if (node == NULL) return 0;
+    return height(node->left) - height(node->right);
 }
 
 /* Practice Two - AVL Tree insertion */
@@ -78,6 +71,7 @@ Node *insert(Node *node, int value)
 {
     if (node == NULL)
         return newNode(value);
+
     if (value < node->value)
     {
         node->left = insert(node->left, value);
@@ -93,6 +87,29 @@ Node *insert(Node *node, int value)
             rotateLeft(&(node));
         }
     }
+
+    int balance = rotateRequired(node); 
+
+    // Left Left Case  
+    if (balance > 1 && value < node->left->value)  
+        rotateRight(&(node));  
+  
+    // Right Right Case  
+    if (balance < -1 && value > node->right->value)  
+        rotateLeft(&(node));  
+  
+    // Left Right Case  
+    if (balance > 1 && value > node->left->value)  
+    {  
+        rotateLeft(&node->left);  
+        rotateRight(&(node));  
+    }  
+    // Right Left Case  
+    if (balance < -1 && value < node->right->value)  
+    {  
+        rotateRight(&node->right);  
+        rotateLeft(&(node));  
+    }  
     return node;
 }
 
@@ -100,24 +117,14 @@ int main()
 {
 
     Node *root = NULL;
-    root = insert(root, 50);
-    root = insert(root, 80);
-    root = insert(root, 100);
-    root = insert(root, 10);
-    root = insert(root, 110);
-    root = insert(root, 120);
+    root = insert(root, 30);
     root = insert(root, 40);
+    root = insert(root, 50);
+    root = insert(root, 10);
+    root = insert(root, 20);
 
-
-    cout << "If 1, rotate required " << rotateRequired(root) << endl;
-
-    printf("Inorder traversal of the given tree \n");
+    printf("Inorder traversal of the AVL tree \n");
     inorder(root);
 
-    cout << "Check Height" << height(root) << endl;
-
-    printf("Inorder traversal of the rotated tree \n");
-    inorder(root);
-
-    cout << "Check Height " << height(root) << endl;
+    cout << "Height of Tree is at " << height(root) << endl;
 }
