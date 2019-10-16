@@ -1,136 +1,195 @@
-#include <iostream> 
+#include <iostream>
 
-using namespace std; 
+using namespace std;
 
-struct Node { 
-	int value; 
-	struct Node *left, *right; 
-	int height; 
-}; 
+struct Node
+{
+	int value;
+	struct Node *left, *right;
+	int height;
+};
 
-Node* newNode(int item) 
-{ 
-	Node* temp = new Node; 
-	temp->value = item; 
-	temp->left = temp->right = NULL; 
-	return temp; 
-} 
+Node *newNode(int item)
+{
+	Node *temp = new Node;
+	temp->value = item;
+	temp->left = temp->right = NULL;
+	return temp;
+}
 
-int height(Node* node) {
-	if (node == NULL) return -1; 
+int height(Node *node)
+{
+	if (node == NULL)
+		return -1;
+	int leftH = height(node->left);
+	int rightH = height(node->right);
 
-	int leftHeight = height(node->left);
-	int rightHeight = height(node->right); 
-
-	if (leftHeight > rightHeight) {
-		return leftHeight + 1; 
+	if (leftH > rightH)
+	{
+		return leftH + 1;
 	}
-	else {
-		return rightHeight + 1; 
+	else
+	{
+		return rightH + 1;
 	}
 }
 
-void inorder(Node* root) 
-{ 
-	if (root != NULL) { 
-		inorder(root->left); 
-		printf("%d ", root->value); 
-		inorder(root->right); 
-	} 
-} 
+void rotateRight(Node **root)
+{
+    Node *temp = *root;
+    *root = (*root)->left;
+    temp->left = (*root)->right;
+    (*root)->right = temp;
+}
 
-/* Practice Two - AVL Tree insertion */ 
-Node* insert(Node* node, int value) 
-{ 
-	if (node == NULL) 
-		return newNode(value); 
+void rotateLeft(Node **root)
+{
+    Node *temp = *root;
+    *root = (*root)->right;
+    temp->right = (*root)->left;
+    (*root)->left = temp;
+}
 
-	if (value < node->value) 
-		node->left = insert(node->left, value); 
+int balanceFactor(Node *node)
+{
+    if (node == NULL) return 0;
+    return height(node->left) - height(node->right);
+}
+
+void inorder(Node *root)
+{
+	if (root != NULL)
+	{
+		inorder(root->left);
+		printf("%d ", root->value);
+		inorder(root->right);
+	}
+}
+
+
+/* Practice Two - AVL Tree insertion */
+Node *insert(Node *node, int value)
+{
+    if (node == NULL)
+        return newNode(value);
+
+    if (value < node->value)
+    {
+        node->left = insert(node->left, value);
+    }
+    else {
+        node->right = insert(node->right, value);
+    }
+
+    int balance = balanceFactor(node); 
+
+    // Left Left Case  
+    if (balance > 1 && value < node->left->value)  
+        rotateRight(&(node));  
+  
+    // Right Right Case  
+    if (balance < -1 && value > node->right->value)  
+        rotateLeft(&(node));  
+  
+    // Left Right Case  
+    if (balance > 1 && value > node->left->value)  
+    {  
+        rotateLeft(&node->left);  
+        rotateRight(&(node));  
+    }  
+    // Right Left Case  
+    if (balance < -1 && value < node->right->value)  
+    {  
+        rotateRight(&node->right);  
+        rotateLeft(&(node));  
+    }  
+    return node;
+}
+
+/* Practice One - AVL Tree Delete */
+Node *deleteNode(Node *root, int k)
+{
+	if (root == NULL)
+		return root;
+
+	if (root->value > k)
+	{
+		root->left = deleteNode(root->left, k);
+		return root;
+	}
+	else if (root->value < k)
+	{
+		root->right = deleteNode(root->right, k);
+		return root;
+	}
+
+	if (root->left = = NULL)
+	{
+		Node *temp = root->right;
+		delete root;
+		return temp;
+	}
+	else if (root->right == NULL)
+	{
+		Node *temp = root->left;
+		delete root;
+		return temp;
+	}
+
 	else
-		node->right = insert(node->right, value); 
+	{
 
-	return node; 
-} 
+		Node *succParent = root->right;
 
-/* Practice One - Delete */ 
-Node* deleteNode(Node* root, int k) 
-{ 
-	if (root == NULL) 
-		return root; 
+		Node *succ = root->right;
+		while (succ->left != NULL)
+		{
+			succParent = succ;
+			succ = succ->left;
+		}
 
-	if (root->value > k) { 
-		root->left = deleteNode(root->left, k); 
-		return root; 
-	} 
-	else if (root->value < k) { 
-		root->right = deleteNode(root->right, k); 
-		return root; 
-	} 
+		succParent->left = succ->right;
 
-	if (root->left == NULL) { 
-		Node* temp = root->right; 
-		delete root; 
-		return temp; 
-	} 
-	else if (root->right == NULL) { 
-		Node* temp = root->left; 
-		delete root; 
-		return temp; 
-	} 
+		root->value = succ->value;
 
-	else { 
+		delete succ;
+		return root;
+	}
+}
 
-		Node* succParent = root->right; 
-		
-		Node* succ = root->right; 
-		while (succ->left != NULL) { 
-			succParent = succ; 
-			succ = succ->left; 
-		} 
+int main()
+{
 
-		succParent->left = succ->right; 
+	Node *root = NULL;
+	root = insert(root, 50);
+	root = insert(root, 30);
+	root = insert(root, 20);
+	root = insert(root, 40);
+	root = insert(root, 70);
+	root = insert(root, 60);
+	root = insert(root, 80);
 
-		root->value = succ->value; 
+	// printf("Rotate to Right\n");
+	// rotateRight(root);
+	// cout << "height of tree " << height(root) << endl;
 
-		delete succ;		 
-		return root; 
-	} 
-} 
+	printf("Inorder traversal of the given tree \n");
+	inorder(root);
 
-int main() 
-{ 
-	
-	Node* root = NULL; 
-	root = insert(root, 50); 
-	root = insert(root, 30); 
-	root = insert(root, 20); 
-	root = insert(root, 40); 
-	root = insert(root, 70); 
-	root = insert(root, 60); 
-	root = insert(root, 80); 
+	printf("\nDelete 20\n");
+	root = deleteNode(root, 20);
+	printf("Inorder traversal of the modified tree \n");
+	inorder(root);
 
-	std::cout << "height of tree " << height(root) << endl; 
+	printf("\nDelete 30\n");
+	root = deleteNode(root, 30);
+	printf("Inorder traversal of the modified tree \n");
+	inorder(root);
 
-	printf("Inorder traversal of the given tree \n"); 
-	inorder(root); 
+	printf("\nDelete 50\n");
+	root = deleteNode(root, 50);
+	printf("Inorder traversal of the modified tree \n");
+	inorder(root);
 
-	printf("\nDelete 20\n"); 
-	root = deleteNode(root, 20); 
-	printf("Inorder traversal of the modified tree \n"); 
-	inorder(root); 
-
-	printf("\nDelete 30\n"); 
-	root = deleteNode(root, 30); 
-	printf("Inorder traversal of the modified tree \n"); 
-	inorder(root); 
-
-	printf("\nDelete 50\n"); 
-	root = deleteNode(root, 50); 
-	printf("Inorder traversal of the modified tree \n"); 
-	inorder(root); 
-
-	cout << "height of tree " << height(root) << endl; 
-
-	return 0; 
-} 
+	return 0;
+}
