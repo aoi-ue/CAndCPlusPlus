@@ -34,20 +34,26 @@ int height(Node *node)
 	}
 }
 
-void rotateRight(Node *root)
+void rotateRight(Node **root)
 {
-	Node *temp = root;
-	root = root->left;
-	temp->left = root->right;
-	root->right = temp;
+    Node *temp = *root;
+    *root = (*root)->left;
+    temp->left = (*root)->right;
+    (*root)->right = temp;
 }
 
-void rotateLeft(Node *root)
+void rotateLeft(Node **root)
 {
-	Node *temp = root;
-	root = root->right;
-	temp->right = root->left;
-	root->left = temp;
+    Node *temp = *root;
+    *root = (*root)->right;
+    temp->right = (*root)->left;
+    (*root)->left = temp;
+}
+
+int balanceFactor(Node *node)
+{
+    if (node == NULL) return 0;
+    return height(node->left) - height(node->right);
 }
 
 void inorder(Node *root)
@@ -59,16 +65,45 @@ void inorder(Node *root)
 		inorder(root->right);
 	}
 }
-/* Practice Two - AVL Tree Insert */
+
+
+/* Practice Two - AVL Tree insertion */
 Node *insert(Node *node, int value)
 {
-	if (node == NULL)
-		return newNode(value);
-	if (value < node->value)
-		node->left = insert(node->left, value);
-	else
-		node->right = insert(node->right, value);
-	return node;
+    if (node == NULL)
+        return newNode(value);
+
+    if (value < node->value)
+    {
+        node->left = insert(node->left, value);
+    }
+    else {
+        node->right = insert(node->right, value);
+    }
+
+    int balance = balanceFactor(node); 
+
+    // Left Left Case  
+    if (balance > 1 && value < node->left->value)  
+        rotateRight(&(node));  
+  
+    // Right Right Case  
+    if (balance < -1 && value > node->right->value)  
+        rotateLeft(&(node));  
+  
+    // Left Right Case  
+    if (balance > 1 && value > node->left->value)  
+    {  
+        rotateLeft(&node->left);  
+        rotateRight(&(node));  
+    }  
+    // Right Left Case  
+    if (balance < -1 && value < node->right->value)  
+    {  
+        rotateRight(&node->right);  
+        rotateLeft(&(node));  
+    }  
+    return node;
 }
 
 /* Practice One - AVL Tree Delete */
@@ -88,7 +123,7 @@ Node *deleteNode(Node *root, int k)
 		return root;
 	}
 
-	if (root->left == NULL)
+	if (root->left = = NULL)
 	{
 		Node *temp = root->right;
 		delete root;

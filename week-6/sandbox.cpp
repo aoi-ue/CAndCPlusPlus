@@ -60,9 +60,10 @@ void inorder(Node *root)
     }
 }
 
-int rotateRequired(Node *node)
+int balanceFactor(Node *node)
 {
-    if (node == NULL) return 0;
+    if (node == NULL)
+        return 0;
     return height(node->left) - height(node->right);
 }
 
@@ -75,56 +76,97 @@ Node *insert(Node *node, int value)
     if (value < node->value)
     {
         node->left = insert(node->left, value);
-        if (rotateRequired(node))
-        {
-            rotateRight(&(node));
-        }
     }
-    else {
+    else
+    {
         node->right = insert(node->right, value);
-        if (rotateRequired(node))
-        {
-            rotateLeft(&(node));
-        }
     }
 
-    int balance = rotateRequired(node); 
+    int balance = balanceFactor(node);
 
-    // Left Left Case  
-    if (balance > 1 && value < node->left->value)  
-        rotateRight(&(node));  
-  
-    // Right Right Case  
-    if (balance < -1 && value > node->right->value)  
-        rotateLeft(&(node));  
-  
-    // Left Right Case  
-    if (balance > 1 && value > node->left->value)  
-    {  
-        rotateLeft(&node->left);  
-        rotateRight(&(node));  
-    }  
-    // Right Left Case  
-    if (balance < -1 && value < node->right->value)  
-    {  
-        rotateRight(&node->right);  
-        rotateLeft(&(node));  
-    }  
+    // Left Left Case
+    if (balance > 1 && value < node->left->value)
+        rotateRight(&(node));
+
+    // Right Right Case
+    if (balance < -1 && value > node->right->value)
+        rotateLeft(&(node));
+
+    // Left Right Case
+    if (balance > 1 && value > node->left->value)
+    {
+        rotateLeft(&node->left);
+        rotateRight(&(node));
+    }
+    // Right Left Case
+    if (balance < -1 && value < node->right->value)
+    {
+        rotateRight(&node->right);
+        rotateLeft(&(node));
+    }
     return node;
+}
+
+Node *deleteNode(Node *node, int value)
+{
+    if (node == NULL)
+        return node;
+
+    if (node->value > value)
+    {
+        node->left = deleteNode(node->left, value);
+        return node;
+    }
+    else if (node->value < value)
+    {
+        node->right = deleteNode(node->right, value);
+        return node;
+    }
+    // delete right selected node
+    if (node->left == NULL)
+    {
+        Node *temp = node->right;
+        delete node;
+        return temp;
+    }
+    // delete left selected node
+    else if (node->right == NULL)
+    {
+        Node *temp = node;
+        delete node;
+        return temp;
+    }
+
+    else
+    {
+        Node *temp = node->right;
+        node->value = temp->value;
+        node->right = deleteNode(node->right,temp->value);
+    }
 }
 
 int main()
 {
 
     Node *root = NULL;
-    root = insert(root, 30);
-    root = insert(root, 40);
-    root = insert(root, 50);
     root = insert(root, 10);
     root = insert(root, 20);
+    root = insert(root, 30);
+    // root = insert(root, 40);
+    // root = insert(root, 50);
 
     printf("Inorder traversal of the AVL tree \n");
     inorder(root);
 
     cout << "Height of Tree is at " << height(root) << endl;
+
+    printf("Inorder traversal of the AVL tree \n");
+    inorder(root);
+
+    cout << "Height of Tree is at " << height(root) << endl;
+
+    root = deleteNode(root, 10);
+    cout << "Height of Tree is at " << height(root) << endl;
+    printf("Inorder traversal of the delete one node AVL tree \n");
+    inorder(root);
 }
