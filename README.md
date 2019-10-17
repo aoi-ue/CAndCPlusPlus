@@ -1,4 +1,4 @@
-# CAndCPlusPlus && Data Structure 👨‍💻
+# CAndCPlusPlus && Data Structure Algorithm 👨‍💻
 This repo contains practice, assignment and projects. 
 
 ### Assignments 📝
@@ -6,7 +6,7 @@ This repo contains practice, assignment and projects.
 #### 07 Oct - 11 Oct 
 
 - [x] Write a Mutex function to run multi-core 
-- [ ] Build Binary Tree that Find Height, Search and Delete leaf node. 
+- [x] Build Binary Tree that Find Height, Search and Delete leaf node. 
 
 #### 30 Sep - 04 Oct
 
