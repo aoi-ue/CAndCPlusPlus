@@ -40,7 +40,7 @@ Node *rotateRight(Node **root)
     *root = (*root)->left;
     temp->left = (*root)->right;
     (*root)->right = temp;
-    return *root; 
+    return *root;
 }
 
 Node *rotateLeft(Node **root)
@@ -49,8 +49,7 @@ Node *rotateLeft(Node **root)
     *root = (*root)->right;
     temp->right = (*root)->left;
     (*root)->left = temp;
-    return *root; 
-
+    return *root;
 }
 
 void inorder(Node *root)
@@ -70,19 +69,21 @@ int balanceFactor(Node *node)
     return height(node->left) - height(node->right);
 }
 
-Node *search(Node *node, int value) 
+Node *search(Node *node, int value)
 {
 
-    if (node == NULL) return NULL; 
-    if (node->value == value) return node; 
+    if (node == NULL)
+        return NULL;
+    if (node->value == value)
+        return node;
 
-    if (node->value < value) 
+    if (node->value < value)
     {
-        return search(node->right, value); 
-    } 
-    else 
+        return search(node->right, value);
+    }
+    else
     {
-        return search(node->left, value); 
+        return search(node->left, value);
     }
 }
 
@@ -133,79 +134,108 @@ Node *deleteNode(Node *node, int value)
     if (node->value > value)
     {
         node->left = deleteNode(node->left, value);
-        return node;
     }
     else if (node->value < value)
     {
         node->right = deleteNode(node->right, value);
-        return node;
     }
-    // delete right selected node
-    if (node->left == NULL)
+    else
     {
-        Node *temp = node->right;
-        delete node;
-        return temp;
+        // delete right selected node
+        if (node->left == NULL)
+        {
+            Node *temp = node->right;
+            delete node;
+            return temp;
+        }
+        // delete left selected node
+        else if (node->right == NULL)
+        {
+            Node *temp = node->left;
+            delete node;
+            return temp;
+        }
+        else
+        { // for parent with two children
+            Node *succParent = node;
+            Node *succ = node->right;
+
+            // selecting the right tree's most bottom left node
+            while (succ->left != NULL)
+            {
+                succParent = succ;
+                succ = succ->left;
+            }
+
+            node->value = succ->value;
+
+            delete succ;
+            succParent->left = NULL;
+            return node;
+        }
     }
-    // delete left selected node
-    else if (node->right == NULL)
+
+    int balance = balanceFactor(node);
+
+    // Left Left Case
+    if (balance > 1 && balanceFactor(node->left) >= 0)
+        return rotateRight(&(node));
+
+    // Right Right Case
+    if (balance < -1 && balanceFactor(node->right) <= 0)
+        return rotateLeft(&(node));
+
+    // Left Right Case
+    if (balance > 1 && balanceFactor(node->left) < 0)
     {
-        Node *temp = node;
-        delete node;
-        return temp;
+        node->left = rotateLeft(&(node)->left);
+        return rotateRight(&(node));
     }
-	else
-	{  // for parent with two children 
-		Node *succParent = node;
-		Node *succ = node->right;
-        
-        // selecting the right tree's most bottom left node
-		while (succ->left != NULL)
-		{
-			succParent = succ;
-			succ = succ->left;
-		}
-
-		node->value = succ->value;
-
-		delete succ;
-		succParent->left = NULL; 
-		return node;
-	}
+    // Right Left Case
+    if (balance < -1 && balanceFactor(node->right) > 0)
+    {
+        node->left = rotateRight(&(node)->right);
+        return rotateLeft(&(node));
+    }
+    return node;
 }
 
 int main()
 {
 
     Node *root = NULL;
-	root = insert(root, 50);
-	root = insert(root, 30);
-	root = insert(root, 20);
-	root = insert(root, 40);
-	root = insert(root, 70);
-	root = insert(root, 60);
-	root = insert(root, 80);
+    root = insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 20);
+    root = insert(root, 40);
+    root = insert(root, 70);
+    root = insert(root, 60);
+    root = insert(root, 10);
 
-    // Node *item = search(root, 40); 
-    // (item == NULL) ? cout << "Not Found" : cout << "Search found: " << item->value << endl; 
+    // Node *item = search(root, 40);
+    // (item == NULL) ? cout << "Not Found" : cout << "Search found: " << item->value << endl;
 
-    cout << "Inorder traversal of the AVL tree" << endl; 
+    cout << "Inorder traversal of the AVL tree" << endl;
     inorder(root);
     cout << "Height of Tree is at " << height(root) << endl;
 
-    cout << "Inorder traversal of the delete one node AVL tree" << endl; 
+    cout << "Inorder traversal of the delete one node AVL tree" << endl;
     root = deleteNode(root, 50);
     inorder(root);
     cout << "Height of Tree is at " << height(root) << endl;
 
-    cout << "Inorder traversal of the delete two node AVL tree" << endl; 
+    cout << "Inorder traversal of the delete two node AVL tree" << endl;
     root = deleteNode(root, 70);
     inorder(root);
     cout << "Height of Tree is at " << height(root) << endl;
 
-    cout << "Inorder traversal of the delete three node AVL tree" << endl; 
+    cout << "Inorder traversal of the delete three node AVL tree" << endl;
     root = deleteNode(root, 40);
     inorder(root);
     cout << "Height of Tree is at " << height(root) << endl;
 
+    cout << "Inorder traversal of the delete fourth node AVL tree" << endl;
+    root = deleteNode(root, 20);
+    inorder(root);
+    cout << "Height of Tree is at " << height(root) << endl;
 }
