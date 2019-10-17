@@ -155,10 +155,11 @@ Node *deleteNode(Node *node, int value)
         return temp;
     }
 	else
-	{
+	{  // for parent with two children 
 		Node *succParent = node;
 		Node *succ = node->right;
-
+        
+        // selecting the right tree's most bottom left node
 		while (succ->left != NULL)
 		{
 			succParent = succ;
