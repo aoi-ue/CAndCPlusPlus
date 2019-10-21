@@ -1,3 +1,4 @@
 *.exe
 Makefile
 settings.json
+sandbox*
