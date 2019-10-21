@@ -123,7 +123,7 @@ Node *deleteNode(Node *root, int k)
 		return root;
 	}
 
-	if (root->left = = NULL)
+	if (root->left == NULL)
 	{
 		Node *temp = root->right;
 		delete root;
@@ -138,7 +138,6 @@ Node *deleteNode(Node *root, int k)
 
 	else
 	{
-
 		Node *succParent = root;
 		Node *succ = root->right;
 
@@ -148,9 +147,8 @@ Node *deleteNode(Node *root, int k)
 			succ = succ->left;
 		}
 
-
 		root->value = succ->value;
-
+		
 		delete succ;
 		succParent->left = NULL; 
 		return root;
