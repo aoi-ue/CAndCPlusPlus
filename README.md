@@ -3,6 +3,11 @@ This repo contains practice, assignment and projects.
 
 ### Assignments 📝
 
+#### 21 Oct - 26 Oct 
+
+- [ ] Refactor Shapes to Classes 
+- [ ] Write a graph algorithm with DFS and Dijkstra  
+
 #### 07 Oct - 11 Oct 
 
 - [x] Write a Mutex function to run multi-core 
