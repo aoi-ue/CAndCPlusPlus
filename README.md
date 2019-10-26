@@ -1,11 +1,11 @@
-# CAndCPlusPlus && Data Structure Algorithm 👨‍💻
+# CAndCPlusPlus in OOP && Data Structure Algorithm 👨‍💻
 This repo contains practice, assignment and projects. 
 
 ### Assignments 📝
 
 #### 21 Oct - 26 Oct 
 
-- [ ] Refactor Shapes to Classes 
+- [x] Design with UML and Refactor Shapes to Classes in SOLID 
 - [ ] Write a graph algorithm with DFS and Dijkstra  
 
 #### 07 Oct - 11 Oct 
@@ -16,7 +16,7 @@ This repo contains practice, assignment and projects.
 #### 30 Sep - 04 Oct
 
 - [x] ~Build a CSV Parser in C++~ 
-- [ ] Refactor Past Projects in C++ (Diamond, Calculator, Convertor)
+- [ ] Refactor (Diamond, Calculator, Convertor) to C++
 - [x] ~Build a Linked List in C++~
 
 #### 23 Sep - 27 Sep
